@@ -3,4 +3,8 @@ const tertiary = {
   dark: '#CCC784',
 }
 
-export { tertiary }
+const red = {
+  dark: '#8b0000',
+}
+
+export { tertiary, red }

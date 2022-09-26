@@ -1,23 +1,28 @@
 import { ImageList, ImageListItem, ImageListItemBar, Box } from '@mui/material'
+import { useState } from 'react'
 
+import { Artwork } from '../../types'
 import PageHeader from '../PageHeader'
-import artworks from './mock_artworkData'
+import GalleryItem from './GalleryItem'
+import mockArtworks from './mock_artworkData'
 
 const ArtworkGallery = () => {
+  const artworks = mockArtworks.map((artwork) =>
+    Object.fromEntries(Object.entries(artwork).filter(([_, v]) => v != null))
+  ) as Artwork[]
+
   return (
     <>
       <PageHeader title="Gallery" color="primary" />
       <Box display="flex" alignItems="center" justifyContent="center">
-        <ImageList sx={{ width: '75vw' }} cols={2} gap={100} variant="masonry">
+        <ImageList
+          sx={{ width: '80vw', padding: '20px' }}
+          cols={2}
+          gap={100}
+          variant="masonry"
+        >
           {artworks.map((artwork) => (
-            <ImageListItem key={artwork.images[0]}>
-              <img
-                src={`${artwork.images[0]}?w=800&fit=crop&auto=format`}
-                srcSet={`${artwork.images[0]}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={artwork.title}
-                loading="lazy"
-              />
-            </ImageListItem>
+            <GalleryItem artwork={artwork} />
           ))}
         </ImageList>
       </Box>

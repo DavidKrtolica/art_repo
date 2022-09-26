@@ -1,4 +1,4 @@
-const artworks = [
+const mockArtworks = [
   {
     id: '1',
     title: 'Retro metro',
@@ -205,4 +205,4 @@ const artworks = [
   },
 ]
 
-export default artworks
+export default mockArtworks
