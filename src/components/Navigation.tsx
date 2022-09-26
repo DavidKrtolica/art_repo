@@ -7,7 +7,7 @@ import {
   Box,
   ListItemIcon,
   ListItemButton,
-  ListItemText,
+  Typography,
 } from '@mui/material'
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
 import ColorLensIcon from '@mui/icons-material/ColorLens'
@@ -15,18 +15,31 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 
+import { tertiary } from '../utils/colors'
+
+const menuSections: { name: string; icon: ReactNode; textColor?: string }[] = [
+  {
+    name: 'Artwork Gallery',
+    icon: <ColorLensIcon color="primary" />,
+    textColor: 'primary',
+  },
+  {
+    name: 'Artist Hall',
+    icon: <AccountBoxIcon color="secondary" />,
+    textColor: 'secondary',
+  },
+  {
+    name: 'Authenticate',
+    icon: <LoginIcon sx={{ fill: tertiary.main }} />,
+  },
+  {
+    name: 'Register',
+    icon: <AppRegistrationIcon sx={{ fill: tertiary.main }} />,
+  },
+]
+
 const Navigation: FC<{}> = () => {
   const anchor = 'left'
-
-  const menuSections: { name: string; icon: ReactNode }[] = [
-    {
-      name: 'Artwork Gallery',
-      icon: <ColorLensIcon />,
-    },
-    { name: 'Artist Roster', icon: <AccountBoxIcon /> },
-    { name: 'Log In', icon: <LoginIcon /> },
-    { name: 'Register', icon: <AppRegistrationIcon /> },
-  ]
 
   const [open, setOpen] = useState(false)
   const toggleDrawer =
@@ -68,13 +81,14 @@ const Navigation: FC<{}> = () => {
               <ListItem key={section.name} disablePadding>
                 <ListItemButton>
                   <ListItemIcon>{section.icon}</ListItemIcon>
-                  <ListItemText primary={section.name} />
+                  <Typography>{section.name}</Typography>
                 </ListItemButton>
               </ListItem>
             ))}
           </List>
         </Box>
       </Drawer>
+      ¨
     </>
   )
 }
