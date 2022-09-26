@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ImageListItem, ImageListItemBar } from '@mui/material'
 
-import { Artwork } from '../../types'
+import { Artwork } from '../../utils/types'
 import { red } from '../../utils/colors'
 
 type GalleryItemProps = {

@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export type Artwork = {
   id: string
   title: string
@@ -12,4 +14,13 @@ export type Artwork = {
   tags?: string[]
   images: string[]
   creator: any[]
+}
+
+export type NavSection = {
+  name: string
+  href: string
+  icon: ReactNode
+  textColor?: string
+  noText?: boolean
+  topDivider?: boolean
 }

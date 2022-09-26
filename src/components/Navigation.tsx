@@ -1,4 +1,4 @@
-import { useState, MouseEvent, KeyboardEvent, ReactNode } from 'react'
+import { useState, MouseEvent, KeyboardEvent } from 'react'
 import {
   Fab,
   Drawer,
@@ -8,26 +8,31 @@ import {
   ListItemIcon,
   ListItemButton,
   Typography,
+  Divider,
 } from '@mui/material'
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
 import ColorLensIcon from '@mui/icons-material/ColorLens'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
+import HomeIcon from '@mui/icons-material/Home'
 
+import { NavSection } from '../utils/types'
 import { tertiary } from '../utils/colors'
 
-const menuSections: {
-  name: string
-  href: string
-  icon: ReactNode
-  textColor?: string
-}[] = [
+const navSections: NavSection[] = [
+  {
+    name: 'Home',
+    href: '/',
+    icon: <HomeIcon />,
+    noText: true,
+  },
   {
     name: 'Artwork Gallery',
     href: '/gallery',
     icon: <ColorLensIcon color="primary" />,
     textColor: 'primary',
+    topDivider: true,
   },
   {
     name: 'Artist Hall',
@@ -39,6 +44,7 @@ const menuSections: {
     name: 'Authenticate',
     href: '/auth',
     icon: <LoginIcon sx={{ fill: tertiary.main }} />,
+    topDivider: true,
   },
   {
     name: 'Register',
@@ -86,13 +92,16 @@ const Navigation = () => {
           onKeyDown={toggleDrawer(false)}
         >
           <List>
-            {menuSections.map((section) => (
-              <ListItem key={section.name} disablePadding>
-                <ListItemButton href={section.href}>
-                  <ListItemIcon>{section.icon}</ListItemIcon>
-                  <Typography>{section.name}</Typography>
-                </ListItemButton>
-              </ListItem>
+            {navSections.map((section) => (
+              <>
+                {section.topDivider && <Divider />}
+                <ListItem key={section.name} disablePadding>
+                  <ListItemButton href={section.href}>
+                    <ListItemIcon>{section.icon}</ListItemIcon>
+                    {!section.noText && <Typography>{section.name}</Typography>}
+                  </ListItemButton>
+                </ListItem>
+              </>
             ))}
           </List>
         </Box>

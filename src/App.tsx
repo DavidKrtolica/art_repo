@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
+
 import Navigation from './components/Navigation'
 import Homepage from './components/Homepage'
 import ArtworkGallery from './components/ArtworkGallery/ArtworkGallery'
+import ArtistHall from './components/ArtistHall/ArtistHall'
+import Auth from './components/Auth/Auth'
 
 const darkTheme = createTheme({
   palette: {
@@ -21,6 +24,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="gallery" element={<ArtworkGallery />} />
+            <Route path="hall" element={<ArtistHall />} />
+            <Route path="auth" element={<Auth />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

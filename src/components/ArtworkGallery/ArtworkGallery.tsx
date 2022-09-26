@@ -1,7 +1,6 @@
-import { ImageList, ImageListItem, ImageListItemBar, Box } from '@mui/material'
-import { useState } from 'react'
+import { ImageList, Box } from '@mui/material'
 
-import { Artwork } from '../../types'
+import { Artwork } from '../../utils/types'
 import PageHeader from '../PageHeader'
 import GalleryItem from './GalleryItem'
 import mockArtworks from './mock_artworkData'
