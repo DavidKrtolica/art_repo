@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { Typography, Box, Link } from '@mui/material'
 
 import { tertiary } from '../utils/colors'
@@ -35,7 +34,7 @@ const homepageLinks: {
   },
 ]
 
-const Homepage: FC<{}> = () => {
+const Homepage = () => {
   return (
     <Box
       display="flex"

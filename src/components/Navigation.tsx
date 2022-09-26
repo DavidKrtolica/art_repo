@@ -1,4 +1,4 @@
-import { FC, useState, MouseEvent, KeyboardEvent, ReactNode } from 'react'
+import { useState, MouseEvent, KeyboardEvent, ReactNode } from 'react'
 import {
   Fab,
   Drawer,
@@ -17,28 +17,37 @@ import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 
 import { tertiary } from '../utils/colors'
 
-const menuSections: { name: string; icon: ReactNode; textColor?: string }[] = [
+const menuSections: {
+  name: string
+  href: string
+  icon: ReactNode
+  textColor?: string
+}[] = [
   {
     name: 'Artwork Gallery',
+    href: '/gallery',
     icon: <ColorLensIcon color="primary" />,
     textColor: 'primary',
   },
   {
     name: 'Artist Hall',
+    href: '/hall',
     icon: <AccountBoxIcon color="secondary" />,
     textColor: 'secondary',
   },
   {
     name: 'Authenticate',
+    href: '/auth',
     icon: <LoginIcon sx={{ fill: tertiary.main }} />,
   },
   {
     name: 'Register',
+    href: '/auth',
     icon: <AppRegistrationIcon sx={{ fill: tertiary.main }} />,
   },
 ]
 
-const Navigation: FC<{}> = () => {
+const Navigation = () => {
   const anchor = 'left'
 
   const [open, setOpen] = useState(false)
@@ -79,7 +88,7 @@ const Navigation: FC<{}> = () => {
           <List>
             {menuSections.map((section) => (
               <ListItem key={section.name} disablePadding>
-                <ListItemButton>
+                <ListItemButton href={section.href}>
                   <ListItemIcon>{section.icon}</ListItemIcon>
                   <Typography>{section.name}</Typography>
                 </ListItemButton>

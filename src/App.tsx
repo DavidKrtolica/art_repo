@@ -1,10 +1,9 @@
-import { FC } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import Navigation from './components/Navigation'
 import Homepage from './components/Homepage'
-import ArtworkGallery from './components/ArtworkGallery'
+import ArtworkGallery from './components/ArtworkGallery/ArtworkGallery'
 
 const darkTheme = createTheme({
   palette: {
@@ -12,7 +11,7 @@ const darkTheme = createTheme({
   },
 })
 
-const App: FC<{}> = () => {
+const App = () => {
   return (
     <>
       <ThemeProvider theme={darkTheme}>
