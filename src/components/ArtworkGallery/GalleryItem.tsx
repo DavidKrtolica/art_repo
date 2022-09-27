@@ -16,11 +16,11 @@ const GalleryItem = ({ artwork }: GalleryItemProps) => {
       onMouseOver={() => setIsHovering(true)}
       onMouseOut={() => setIsHovering(false)}
       key={artwork.images[0]}
-      sx={{ '&:hover': { boxShadow: `0px 0px 20px 0px ${red.dark}` } }}
+      sx={{ '&:hover': { boxShadow: `0px 0px 25px 5px ${red.dark}` } }}
     >
       <img
         src={`${artwork.images[0]}?w=800&fit=crop&auto=format`}
-        srcSet={`${artwork.images[0]}?w=248&fit=crop&auto=format&dpr=2 2x`}
+        srcSet={`${artwork.images[0]}?w=800&fit=crop&auto=format&dpr=2 2x`}
         alt={artwork.title}
         loading="lazy"
       />

@@ -24,3 +24,10 @@ export type NavSection = {
   noText?: boolean
   topDivider?: boolean
 }
+
+export type HomepageItem = {
+  text: string
+  href: string
+  mainColor: string
+  darkColor: string
+}

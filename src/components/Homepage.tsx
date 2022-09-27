@@ -1,13 +1,9 @@
 import { Typography, Box, Link } from '@mui/material'
 
 import { tertiary } from '../utils/colors'
+import { HomepageItem } from '../utils/types'
 
-const homepageLinks: {
-  text: string
-  href: string
-  mainColor: string
-  darkColor: string
-}[] = [
+const homepageItems: HomepageItem[] = [
   {
     text: 'Artwork Gallery',
     href: '/gallery',
@@ -43,7 +39,7 @@ const Homepage = () => {
       minHeight="80vh"
       flexDirection="column"
     >
-      {homepageLinks.map((link) => (
+      {homepageItems.map((link) => (
         <Link href={link.href} underline="hover">
           <Typography
             variant="h2"
