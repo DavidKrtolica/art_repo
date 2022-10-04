@@ -8,6 +8,7 @@ import ArtworkGallery from './components/ArtworkGallery/ArtworkGallery'
 import ArtistHall from './components/ArtistHall/ArtistHall'
 import Auth from './components/Auth/Auth'
 import Artwork from './components/Artwork/Artwork'
+import Artist from './components/Artist/Artist'
 
 const darkTheme = createTheme({
   typography: {
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="/hall" element={<ArtistHall />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/artwork" element={<Artwork />} />
+            <Route path="/artist" element={<Artist />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

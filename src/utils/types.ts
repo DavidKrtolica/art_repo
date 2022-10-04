@@ -13,7 +13,7 @@ export type Artwork = {
   itemDiameter?: number
   tags?: string[]
   images: string[]
-  creator: any[]
+  creator: Artist[]
 }
 
 export type NavSection = {
@@ -30,4 +30,17 @@ export type HomepageItem = {
   href: string
   mainColor: string
   darkColor: string
+}
+
+export type Artist = {
+  id: string
+  partyType: string
+  fullName: string
+  citedName: string
+  role: string
+  nationality: string
+  birthDate: string
+  deathDate: string
+  birthPlace: string
+  deathPlace: string
 }
