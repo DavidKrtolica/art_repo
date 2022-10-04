@@ -97,7 +97,7 @@ const mockArtworks = [
     itemHeight: 22.0,
     itemDepth: 4.0,
     itemDiameter: 0.0,
-    note: 'For John',
+    note: 'Note is a short sentence from the artist about the artwork, if relevant',
     tags: ['acrylic'],
     images: ['https://images.unsplash.com/photo-1590622974113-66a9160acf20'],
     creator: [

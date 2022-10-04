@@ -13,7 +13,7 @@ const ImageViewer = ({ src, alt }: ImageViewerProps) => {
 
   return (
     <>
-      <Box sx={{ margin: 5 }}>
+      <Box sx={{ mt: 5 }}>
         <img
           alt={alt}
           src={src}
@@ -35,7 +35,7 @@ const ImageViewer = ({ src, alt }: ImageViewerProps) => {
           sx={{
             position: 'fixed',
             left: '95%',
-            top: 5,
+            top: 10,
           }}
         >
           <ZoomInMapIcon />

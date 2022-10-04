@@ -17,7 +17,7 @@ const GalleryItem = ({ artwork }: GalleryItemProps) => {
         onMouseOver={() => setIsHovering(true)}
         onMouseOut={() => setIsHovering(false)}
         key={artwork.images[0]}
-        sx={{ '&:hover': { boxShadow: `0px 0px 25px 5px ${red.dark}` } }}
+        sx={{ '&:hover': { boxShadow: `0px 0px 25px 5px ${red.darker}` } }}
       >
         <img
           src={`${artwork.images[0]}?w=800&fit=crop&auto=format`}

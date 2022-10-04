@@ -1,17 +1,18 @@
-import { Typography, Box } from '@mui/material'
+import { Typography, Box, Divider } from '@mui/material'
 import ImageViewer from './ImageViewer'
 const mockArtwork = {
   id: '4',
   title: 'Vehicle',
   creationDate: '2005',
   medium: 'acrylic on paper',
-  description: null,
+  description:
+    'The thing has been painted in acrylic on paper. This is a fake description obviously and I have no idea what to write in it. Colors, lines & stuff, and whatever else the artist or curator might want to say',
   dateSubmitted: '2022-09-01',
   itemWidth: 35.0,
   itemHeight: 22.0,
   itemDepth: 4.0,
   itemDiameter: 0.0,
-  note: 'For John',
+  note: 'Note is a short sentence from the artist about the artwork, if relevant',
   tags: ['acrylic'],
   images: ['https://images.unsplash.com/photo-1590622974113-66a9160acf20'],
   creator: [
@@ -54,6 +55,16 @@ const Artwork = () => {
         {artwork.creationDate}
       </Typography>
       <ImageViewer src={artwork.images[0]} alt={artwork.title} />
+      <Typography
+        variant="h5"
+        color={'text.secondary'}
+        sx={{ ...sxCommon, mb: 5 }}
+      >
+        {artwork.note}
+      </Typography>
+      <Typography variant="h6" sx={sxCommon}>
+        {artwork.description}
+      </Typography>
     </Box>
   )
 }

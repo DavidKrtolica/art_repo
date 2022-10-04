@@ -1,16 +1,16 @@
 import { Typography, Box } from '@mui/material'
 
 const mockArtist = {
-    id: '6',
-    partyType: 'Person',
-    fullName: 'George Ursachi',
-    citedName: 'Sachi',
-    role: 'Unknown',
-    nationality: 'Romanian',
-    birthDate: '2000-03-17',
-    deathDate: 'Unknown',
-    birthPlace: 'Bacau, Romania',
-    deathPlace: 'Unknown'
+  id: '3',
+  partyType: 'Person',
+  fullName: 'Tim Mossholder',
+  citedName: 'Mossholder',
+  role: null,
+  nationality: 'American',
+  birthDate: '1983-02-14',
+  deathDate: null,
+  birthPlace: 'Providence, Rhode Island',
+  deathPlace: null,
 }
 
 const Artist = () => {
@@ -24,25 +24,13 @@ const Artist = () => {
       justifyContent="center"
       flexDirection="column"
     >
-      <Typography
-        variant="h4"
-        //color={color}
-        sx={sxCommon}
-      >
+      <Typography variant="h4" sx={sxCommon}>
         {artist.citedName}
       </Typography>
-      <Typography
-        variant="h3"
-        //color={color}
-        sx={sxCommon}
-      >
+      <Typography variant="h3" sx={sxCommon}>
         {artist.fullName}
       </Typography>
-      <Typography
-        variant="h4"
-        //color={color}
-        sx={sxCommon}
-      >
+      <Typography variant="h4" sx={sxCommon}>
         {artist.nationality}
       </Typography>
     </Box>
