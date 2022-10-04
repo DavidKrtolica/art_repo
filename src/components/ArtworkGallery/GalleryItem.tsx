@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { ImageListItem, ImageListItemBar, Link } from '@mui/material'
-
+import { ImageListItem, ImageListItemBar } from '@mui/material'
+import { Link } from 'react-router-dom'
 import { Artwork } from '../../utils/types'
 import { red } from '../../utils/colors'
 
@@ -12,7 +12,7 @@ const GalleryItem = ({ artwork }: GalleryItemProps) => {
   const [isHovering, setIsHovering] = useState(false)
 
   return (
-    <Link href="/artwork">
+    <Link to="/artwork">
       <ImageListItem
         onMouseOver={() => setIsHovering(true)}
         onMouseOut={() => setIsHovering(false)}

@@ -10,6 +10,14 @@ import Auth from './components/Auth/Auth'
 import Artwork from './components/Artwork/Artwork'
 
 const darkTheme = createTheme({
+  typography: {
+    fontFamily: [
+      'Courier New',
+      'Lucida Sans Typewriter',
+      'Lucida Typewriter',
+    ].join(','),
+  },
+
   palette: {
     mode: 'dark',
   },
