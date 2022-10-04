@@ -7,6 +7,7 @@ import Homepage from './components/Homepage'
 import ArtworkGallery from './components/ArtworkGallery/ArtworkGallery'
 import ArtistHall from './components/ArtistHall/ArtistHall'
 import Auth from './components/Auth/Auth'
+import Artwork from './components/Artwork/Artwork'
 
 const darkTheme = createTheme({
   palette: {
@@ -23,9 +24,10 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="gallery" element={<ArtworkGallery />} />
-            <Route path="hall" element={<ArtistHall />} />
-            <Route path="auth" element={<Auth />} />
+            <Route path="/gallery" element={<ArtworkGallery />} />
+            <Route path="/hall" element={<ArtistHall />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/artwork" element={<Artwork />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
