@@ -1,21 +1,11 @@
 import { Typography, Box } from '@mui/material'
+import { useLocation } from 'react-router-dom'
 
-const mockArtist = {
-  id: '3',
-  partyType: 'Person',
-  fullName: 'Tim Mossholder',
-  citedName: 'Mossholder',
-  role: null,
-  nationality: 'American',
-  birthDate: '1983-02-14',
-  deathDate: null,
-  birthPlace: 'Providence, Rhode Island',
-  deathPlace: null,
-}
 
-const Artist = () => {
+
+const ArtistComponent = () => {
   const sxCommon = { width: '80vw', px: '20px' }
-  const artist = mockArtist
+  const artistData = useLocation().state
 
   return (
     <Box
@@ -25,16 +15,16 @@ const Artist = () => {
       flexDirection="column"
     >
       <Typography variant="h4" sx={sxCommon}>
-        {artist.citedName}
+        {artistData ? (artistData.citedName) : ('Nothing')}
       </Typography>
       <Typography variant="h3" sx={sxCommon}>
-        {artist.fullName}
+        {artistData ? (artistData.fullName) : ('Nothing')}
       </Typography>
       <Typography variant="h4" sx={sxCommon}>
-        {artist.nationality}
+        {artistData ? (artistData.nationality) : ('Nothing')}
       </Typography>
     </Box>
   )
 }
 
-export default Artist
+export default ArtistComponent

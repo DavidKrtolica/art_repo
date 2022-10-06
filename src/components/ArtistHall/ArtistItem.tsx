@@ -15,9 +15,10 @@ const ArtistItem = ({ artist }: ArtistItemProps) => {
       role="checkbox"
       tabIndex={-1}
       key={artist.id}
-      component={Link}
       sx={{ textDecoration: 'none' }}
+      component={Link}
       to="/artist"
+      state={ artist }
     >
       {keys.map((key) => (
         <TableCell>{artist[key]}</TableCell>
