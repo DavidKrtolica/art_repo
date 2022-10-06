@@ -6,6 +6,7 @@ const tertiary = {
 const red = {
   dark: '#8b0000',
   darker: '#580000',
+  evenDarker: '#250000',
 }
 
 export { tertiary, red }

@@ -106,7 +106,6 @@ const Navigation = () => {
           </List>
         </Box>
       </Drawer>
-      ¨
     </>
   )
 }
