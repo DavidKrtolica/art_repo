@@ -1,8 +1,6 @@
 import { Typography, Box } from '@mui/material'
 import { useLocation } from 'react-router-dom'
 
-
-
 const ArtistComponent = () => {
   const sxCommon = { width: '80vw', px: '20px' }
   const artistData = useLocation().state
@@ -14,14 +12,14 @@ const ArtistComponent = () => {
       justifyContent="center"
       flexDirection="column"
     >
-      <Typography variant="h4" sx={sxCommon}>
-        {artistData ? (artistData.citedName) : ('Nothing')}
+      <Typography variant="h4" sx={{ ...sxCommon, mt: 3 }}>
+        {artistData ? artistData.citedName : 'Nothing'}
       </Typography>
       <Typography variant="h3" sx={sxCommon}>
-        {artistData ? (artistData.fullName) : ('Nothing')}
+        {artistData ? artistData.fullName : 'Nothing'}
       </Typography>
       <Typography variant="h4" sx={sxCommon}>
-        {artistData ? (artistData.nationality) : ('Nothing')}
+        {artistData ? artistData.nationality : 'Nothing'}
       </Typography>
     </Box>
   )

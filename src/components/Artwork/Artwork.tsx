@@ -45,7 +45,11 @@ const Artwork = () => {
       justifyContent="center"
       flexDirection="column"
     >
-      <Typography variant="h4" color={'text.secondary'} sx={sxCommon}>
+      <Typography
+        variant="h4"
+        color={'text.secondary'}
+        sx={{ ...sxCommon, mt: 3 }}
+      >
         {artwork.creator[0].citedName}
       </Typography>
       <Typography variant="h3" sx={sxCommon}>
