@@ -1,27 +1,18 @@
 import { useState } from 'react'
-import { Box, Alert, Container } from '@mui/material'
+import { Box, Container } from '@mui/material'
+import { useLocation } from 'react-router-dom'
 import Authenticate from './Authenticate'
 import Register from './Register'
 
-const Auth = ({ register }: { register?: boolean }) => {
-  //const { setToken } = props
+const Auth = () => {
+  const location = useLocation()
 
-  const [isRegister, setIsRegister] = useState(register)
-  //const [alert, setAlert] = useState(null)
+  const [isRegister, setIsRegister] = useState(
+    location.state?.isRegister || false
+  )
 
   return (
     <Container>
-      {/*alert ? (
-        <Box justifyContent="center" display="flex">
-          <Alert
-            sx={{ width: '100%' }}
-            variant="filled"
-            severity={alert.severity}
-          >
-            {alert.message}
-          </Alert>
-        </Box>
-      ) : null*/}
       <Box
         display="flex"
         justifyContent="center"

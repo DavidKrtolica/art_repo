@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Paper, TextField, Button, Stack, Typography } from '@mui/material'
 import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
@@ -7,12 +5,6 @@ import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 import { red } from '../../utils/colors'
 
 const Authenticate = ({ setIsRegister }) => {
-  let navigate = useNavigate()
-
-  //const { setAlert, isSignup, setToken } = props
-  //const [username, setUsername] = useState('')
-  //const [password, setPassword] = useState('')
-
   return (
     <>
       <Paper
@@ -24,9 +16,7 @@ const Authenticate = ({ setIsRegister }) => {
           boxShadow: `5px 10px 15px 10px ${red.evenDarker}`,
         }}
       >
-        <form
-        //onSubmit={handleLogin}
-        >
+        <form>
           <Stack alignItems="center" spacing={3}>
             <Typography variant="h5">Authenticate</Typography>
             <Typography>Welcome!</Typography>
@@ -38,8 +28,6 @@ const Authenticate = ({ setIsRegister }) => {
               variant="outlined"
               type="text"
               autoComplete="off"
-              //value={username}
-              //onChange={e => setUsername(e.target.value)}
             />
             <TextField
               required
@@ -48,8 +36,6 @@ const Authenticate = ({ setIsRegister }) => {
               label="Password"
               variant="outlined"
               type="password"
-              //value={password}
-              //onChange={e => setPassword(e.target.value)}
             />
             <Button
               sx={{ width: '50%' }}

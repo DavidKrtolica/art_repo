@@ -1,6 +1,5 @@
-import { Typography, Box, Link } from '@mui/material'
-
-import { tertiary } from '../utils/colors'
+import { Typography, Box } from '@mui/material'
+import { Link } from 'react-router-dom'
 import { HomepageItem } from '../utils/types'
 
 const homepageItems: HomepageItem[] = [
@@ -27,6 +26,7 @@ const homepageItems: HomepageItem[] = [
     href: '/auth',
     mainColor: 'tertiary.main',
     darkColor: 'tertiary.dark',
+    props: { isRegister: true },
   },
 ]
 
@@ -40,11 +40,17 @@ const Homepage = () => {
       flexDirection="column"
     >
       {homepageItems.map((link) => (
-        <Link href={link.href} underline="hover">
+        <Link
+          to={link.href}
+          state={link.props}
+          style={{ textDecoration: 'none' }}
+        >
           <Typography
             variant="h2"
             color={link.mainColor}
-            sx={{ '&:hover': { color: link.darkColor } }}
+            sx={{
+              '&:hover': { color: link.darkColor, textDecoration: 'underline' },
+            }}
           >
             {link.text}
           </Typography>

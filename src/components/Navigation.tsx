@@ -17,12 +17,12 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 import HomeIcon from '@mui/icons-material/Home'
+import { Link } from 'react-router-dom'
 
 import { NavSection } from '../utils/types'
 
 const Navigation = () => {
   const theme = useTheme()
-  console.log(theme.palette)
   const navSections: NavSection[] = [
     {
       name: 'Home',
@@ -55,6 +55,7 @@ const Navigation = () => {
       icon: (
         <AppRegistrationIcon sx={{ fill: `${theme.palette.tertiary.main}` }} />
       ),
+      props: { isRegister: true },
     },
   ]
   const anchor = 'left'
@@ -98,8 +99,18 @@ const Navigation = () => {
             {navSections.map((section) => (
               <>
                 {section.topDivider && <Divider />}
-                <ListItem key={section.name} disablePadding>
-                  <ListItemButton href={section.href}>
+                <ListItem
+                  key={section.name}
+                  component={Link}
+                  to={section.href}
+                  disablePadding
+                  sx={{
+                    textDecoration: 'none',
+                    color: `${theme.palette.text.secondary}`,
+                  }}
+                  state={section.props}
+                >
+                  <ListItemButton>
                     <ListItemIcon>{section.icon}</ListItemIcon>
                     {!section.noText && <Typography>{section.name}</Typography>}
                   </ListItemButton>

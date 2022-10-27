@@ -23,6 +23,7 @@ export type NavSection = {
   textColor?: string
   noText?: boolean
   topDivider?: boolean
+  props?: object
 }
 
 export type HomepageItem = {
@@ -30,6 +31,7 @@ export type HomepageItem = {
   href: string
   mainColor: string
   darkColor: string
+  props?: object
 }
 
 export type Artist = {

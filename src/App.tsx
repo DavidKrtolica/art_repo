@@ -17,8 +17,8 @@ const App = () => {
     <>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <Navigation />
         <BrowserRouter>
+          <Navigation />
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/gallery" element={<ArtworkGallery />} />
