@@ -10,6 +10,7 @@ import {
   Typography,
   Divider,
 } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
 import ColorLensIcon from '@mui/icons-material/ColorLens'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
@@ -18,42 +19,44 @@ import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 import HomeIcon from '@mui/icons-material/Home'
 
 import { NavSection } from '../utils/types'
-import { tertiary } from '../utils/colors'
-
-const navSections: NavSection[] = [
-  {
-    name: 'Home',
-    href: '/',
-    icon: <HomeIcon />,
-    noText: true,
-  },
-  {
-    name: 'Artwork Gallery',
-    href: '/gallery',
-    icon: <ColorLensIcon color="primary" />,
-    textColor: 'primary',
-    topDivider: true,
-  },
-  {
-    name: 'Artist Hall',
-    href: '/hall',
-    icon: <AccountBoxIcon color="secondary" />,
-    textColor: 'secondary',
-  },
-  {
-    name: 'Authenticate',
-    href: '/auth',
-    icon: <LoginIcon sx={{ fill: tertiary.main }} />,
-    topDivider: true,
-  },
-  {
-    name: 'Register',
-    href: '/auth',
-    icon: <AppRegistrationIcon sx={{ fill: tertiary.main }} />,
-  },
-]
 
 const Navigation = () => {
+  const theme = useTheme()
+  console.log(theme.palette)
+  const navSections: NavSection[] = [
+    {
+      name: 'Home',
+      href: '/',
+      icon: <HomeIcon />,
+      noText: true,
+    },
+    {
+      name: 'Artwork Gallery',
+      href: '/gallery',
+      icon: <ColorLensIcon color="primary" />,
+      textColor: 'primary',
+      topDivider: true,
+    },
+    {
+      name: 'Artist Hall',
+      href: '/hall',
+      icon: <AccountBoxIcon color="secondary" />,
+      textColor: 'secondary',
+    },
+    {
+      name: 'Authenticate',
+      href: '/auth',
+      icon: <LoginIcon sx={{ fill: `${theme.palette.tertiary.main}` }} />,
+      topDivider: true,
+    },
+    {
+      name: 'Register',
+      href: '/auth',
+      icon: (
+        <AppRegistrationIcon sx={{ fill: `${theme.palette.tertiary.main}` }} />
+      ),
+    },
+  ]
   const anchor = 'left'
 
   const [open, setOpen] = useState(false)

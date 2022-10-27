@@ -19,14 +19,14 @@ const homepageItems: HomepageItem[] = [
   {
     text: 'Authenticate',
     href: '/auth',
-    mainColor: tertiary.main,
-    darkColor: tertiary.dark,
+    mainColor: 'tertiary.main',
+    darkColor: 'tertiary.dark',
   },
   {
     text: 'Register',
     href: '/auth',
-    mainColor: tertiary.main,
-    darkColor: tertiary.dark,
+    mainColor: 'tertiary.main',
+    darkColor: 'tertiary.dark',
   },
 ]
 

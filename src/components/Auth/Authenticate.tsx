@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Paper, TextField, Button, Stack, Typography } from '@mui/material'
+import LoginIcon from '@mui/icons-material/Login'
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
+
 import { red } from '../../utils/colors'
 
 const Authenticate = ({ setIsRegister }) => {
@@ -51,7 +54,8 @@ const Authenticate = ({ setIsRegister }) => {
             <Button
               sx={{ width: '50%' }}
               variant="contained"
-              //endIcon={<LoginIcon />}
+              color="tertiary"
+              endIcon={<LoginIcon />}
               type="submit"
             >
               Authenticate
@@ -63,7 +67,7 @@ const Authenticate = ({ setIsRegister }) => {
         sx={{ height: '75px' }}
         variant="contained"
         color="secondary"
-        //startIcon={<MusicNoteIcon />}
+        startIcon={<AppRegistrationIcon />}
         onClick={() => {
           setIsRegister(true)
         }}

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 
 import Navigation from './components/Navigation'
@@ -10,19 +10,7 @@ import Auth from './components/Auth/Auth'
 import Artwork from './components/Artwork/Artwork'
 import ArtistComponent from './components/Artist/ArtistComponent'
 
-const darkTheme = createTheme({
-  typography: {
-    fontFamily: [
-      'Courier New',
-      'Lucida Sans Typewriter',
-      'Lucida Typewriter',
-    ].join(','),
-  },
-
-  palette: {
-    mode: 'dark',
-  },
-})
+import { darkTheme } from './utils/theme'
 
 const App = () => {
   return (

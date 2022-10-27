@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { Paper, TextField, Button, Stack, Typography } from '@mui/material'
+import LoginIcon from '@mui/icons-material/Login'
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
+
 import { red } from '../../utils/colors'
 
 const Signup = ({ setIsRegister }) => {
@@ -117,7 +120,8 @@ const Signup = ({ setIsRegister }) => {
               sx={{ width: '50%' }}
               variant="contained"
               type="submit"
-              //endIcon={<MusicNoteIcon />}
+              color="tertiary"
+              endIcon={<AppRegistrationIcon />}
             >
               Register
             </Button>
@@ -128,7 +132,7 @@ const Signup = ({ setIsRegister }) => {
         sx={{ height: '75px' }}
         variant="contained"
         color="secondary"
-        //startIcon={<LoginIcon />}
+        startIcon={<LoginIcon />}
         onClick={() => {
           setIsRegister(false)
         }}
