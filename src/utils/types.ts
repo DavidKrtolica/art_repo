@@ -1,35 +1,28 @@
 import { ReactNode } from 'react'
 
-/*
- id: ID!
-      title: String!
-      creationYear: Int
-      medium: String!
-      curatorDescription: String
-      itemHeight: Float
-      itemWidth: Float
-      itemDepth: Float
-      itemDiameter: Float
-      artistNote: String
-      image: String!
-      creatorId: String!
-      submittedAt: String!
-*/
-
+//For use on the artwork page
 export type Artwork = {
   id: string
   title: string
-  creationDate: string
+  creationYear: number
   medium: string
-  dateSubmitted: string
-  note?: string
+  submittedAt: string
+  curatorDescription: string
+  artistNote?: string
   itemWidth?: number
   itemHeight?: number
   itemDepth?: number
   itemDiameter?: number
-  tags?: string[]
-  images: string[]
-  creator: Artist[]
+  image: string
+  creatorId: string
+}
+
+//For use on the artwork gallery
+export type GalleryArtwork = {
+  id: string
+  title: string
+  image: string
+  artistNote?: string
 }
 
 export type NavSection = {
