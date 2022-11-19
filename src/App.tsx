@@ -7,7 +7,7 @@ import Homepage from './components/Homepage'
 import ArtworkGallery from './components/ArtworkGallery/ArtworkGallery'
 import ArtistHall from './components/ArtistHall/ArtistHall'
 import Auth from './components/Auth/Auth'
-import Artwork from './components/Artwork/Artwork'
+import ArtworkPage from './components/Artwork/ArtworkPage'
 import ArtistComponent from './components/Artist/ArtistComponent'
 
 import { darkTheme } from './utils/theme'
@@ -24,7 +24,7 @@ const App = () => {
             <Route path="/gallery" element={<ArtworkGallery />} />
             <Route path="/hall" element={<ArtistHall />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/artwork" element={<Artwork />} />
+            <Route path="/artwork/:id" element={<ArtworkPage />} />
             <Route path="/artist" element={<ArtistComponent />} />
           </Routes>
         </BrowserRouter>
