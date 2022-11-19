@@ -12,7 +12,7 @@ const GalleryItem = ({ artwork }: GalleryItemProps) => {
   const [isHovering, setIsHovering] = useState(false)
 
   return (
-    <Link to="/artwork">
+    <Link to={`/artwork/${artwork.id}`}>
       <ImageListItem
         onMouseOver={() => setIsHovering(true)}
         onMouseOut={() => setIsHovering(false)}

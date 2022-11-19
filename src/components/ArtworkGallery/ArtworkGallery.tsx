@@ -5,36 +5,20 @@ import { useQuery, gql } from '@apollo/client'
 import { GalleryArtwork } from '../../utils/types'
 import PageHeader from '../PageHeader'
 import GalleryItem from './GalleryItem'
-//import mockArtworks from './mock_artworkData'
 
 const GET_ARTWORKS = gql`
   query getArtworks {
     artworks {
       id
       title
-      creationYear
-      medium
-      curatorDescription
-      itemHeight
-      itemWidth
-      itemDepth
-      itemDiameter
       artistNote
       image
-      creatorId
-      submittedAt
     }
   }
 `
 type GetArtworksQueryResult = {
   artworks: GalleryArtwork[]
 }
-
-/*const getPaginatedArtworks = (page: number, pageSize: number) => {
-  const startIndex = page * pageSize
-  const endIndex = startIndex + pageSize
-  return allArtworks.slice(startIndex, endIndex)
-}*/
 
 const ArtworkGallery = () => {
   const { loading, error, data } =
