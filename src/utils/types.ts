@@ -1,5 +1,21 @@
 import { ReactNode } from 'react'
 
+/*
+ id: ID!
+      title: String!
+      creationYear: Int
+      medium: String!
+      curatorDescription: String
+      itemHeight: Float
+      itemWidth: Float
+      itemDepth: Float
+      itemDiameter: Float
+      artistNote: String
+      image: String!
+      creatorId: String!
+      submittedAt: String!
+*/
+
 export type Artwork = {
   id: string
   title: string

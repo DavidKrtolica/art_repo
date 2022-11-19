@@ -1,14 +1,20 @@
 import { ImageList, Box, TablePagination } from '@mui/material'
 import { useState, useEffect, ChangeEvent } from 'react'
+import { useQuery, gql } from '@apollo/client'
 
 import { Artwork } from '../../utils/types'
 import PageHeader from '../PageHeader'
 import GalleryItem from './GalleryItem'
 import mockArtworks from './mock_artworkData'
 
-const allArtworks = mockArtworks.map((artwork) =>
+/*const allArtworks = mockArtworks.map((artwork) =>
   Object.fromEntries(Object.entries(artwork).filter(([_, v]) => v != null))
-) as Artwork[]
+) as Artwork[]*/
+
+const GET_ARTWORKS = gql`
+  
+`
+
 
 const getPaginatedArtworks = (page: number, pageSize: number) => {
   const startIndex = page * pageSize
