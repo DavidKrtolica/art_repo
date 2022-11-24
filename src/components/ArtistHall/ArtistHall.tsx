@@ -1,32 +1,55 @@
 import { Box, TablePagination, Table, TableHead, TableRow, TableCell, TableBody, Paper } from '@mui/material'
 import { useState, useEffect, ChangeEvent } from 'react'
+import { useQuery, gql } from '@apollo/client'
 
-import { Artist } from '../../utils/types'
+import { HallArtist } from '../../utils/types'
 import PageHeader from '../PageHeader'
 import ArtistItem from './ArtistItem'
-import mockArtists from './mock_artistData'
+
+const GET_ARTISTS = gql`
+query getArtists {
+  artists {
+    id
+    fullName
+    citedName
+    nationality
+    birthDate
+  }
+}
+`;
 
 interface Column {
-  id: 'id' | 'partyType' | 'fullName' | 'citedName' | 'role' | 'nationality' | 'birthDate' | 'deathDate' | 'birthPlace' | 'deathPlace';
+  id: 'fullName' | 'citedName' | 'nationality' | 'birthDate';
   label: string;
   minWidth?: number;
   align?: 'right';
 }
 
 const columns: Column[] = [
-  { id: 'id', label: 'ID' },
-  { id: 'partyType', label: 'Party Type' },
   { id: 'fullName', label: 'Full Name' },
   { id: 'citedName', label: 'Cited Name' },
-  { id: 'role', label: 'Role' },
   { id: 'nationality', label: 'Nationality' },
   { id: 'birthDate', label: 'Birth Date' },
-  { id: 'deathDate', label: 'Death Date' },
-  { id: 'birthPlace', label: 'Birth Place' },
-  { id: 'deathPlace', label: 'Death Place' },
 ];
 
-const allArtists = mockArtists.map((artist) =>
+type GetArtistsQueryResult = {
+  artists: HallArtist[]
+}
+
+const ArtistHall = () => {
+  const { loading, error, data } =
+    useQuery<GetArtistsQueryResult>(GET_ARTISTS)
+
+  const [artists, setArtists] = useState<HallArtist[]>([])
+
+  useEffect(() => {
+    if (!loading && data) {
+      setArtists(data.artists)
+    }
+  }, [loading, data])
+
+
+/*const allArtists = mockArtists.map((artist) =>
   Object.fromEntries(Object.entries(artist).filter(([_, v]) => v != null))
 ) as Artist[]
 
@@ -57,7 +80,7 @@ const ArtistHall = () => {
 
   useEffect(() => {
     setArtists(getPaginatedArtists(page, pageSize))
-  }, [page, pageSize])
+  }, [page, pageSize])*/
 
   return (
     <>
@@ -86,17 +109,19 @@ const ArtistHall = () => {
         </Paper>
       </Box>
       <Box display="flex" alignItems="center" justifyContent="center">
-        <TablePagination
-          sx={{ width: '80vw', display: 'flex' }}
-          component="div"
-          count={count}
-          page={page}
-          rowsPerPageOptions={[5, 10, 20]}
-          onPageChange={handleChangePage}
-          rowsPerPage={pageSize}
-          onRowsPerPageChange={handleChangePageSize}
-          labelRowsPerPage={'Artists per page'}
-        />
+        {/*
+          <TablePagination
+            sx={{ width: '80vw', display: 'flex' }}
+            component="div"
+            count={count}
+            page={page}
+            rowsPerPageOptions={[5, 10, 20]}
+            onPageChange={handleChangePage}
+            rowsPerPage={pageSize}
+            onRowsPerPageChange={handleChangePageSize}
+            labelRowsPerPage={'Artists per page'}
+          />
+          */}
       </Box>
     </>
   )

@@ -25,7 +25,7 @@ const App = () => {
             <Route path="/hall" element={<ArtistHall />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/artwork/:id" element={<ArtworkPage />} />
-            <Route path="/artist" element={<ArtistComponent />} />
+            <Route path="/artist/:id" element={<ArtistComponent />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
