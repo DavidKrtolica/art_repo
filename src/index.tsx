@@ -6,7 +6,7 @@ import './index.css'
 import App from './App'
 
 const apolloClient = new ApolloClient({
-  uri: 'http://localhost:8080/graphql',
+  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
   cache: new InMemoryCache(),
 })
 

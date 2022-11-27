@@ -1,10 +1,51 @@
+import { useState } from 'react'
 import { Paper, TextField, Button, Stack, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 
 import { red } from '../../utils/colors'
+import useAuth from '../../hooks/useAuth'
 
-const Authenticate = ({ setIsRegister }) => {
+const Authenticate = ({ setIsRegister, setAlert }) => {
+  const navigate = useNavigate()
+  const { setToken, setUser } = useAuth()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleAuthenticate = async () => {
+    const url = new URL(process.env.REACT_APP_API_BASE_URL + '/auth/login')
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+    const data = await response.json()
+
+    if (data.message) {
+      setAlert({
+        severity: 'error',
+        message: data.message,
+      })
+    } else {
+      setToken(data.token)
+      setUser({
+        id: data.id,
+        email: data.email,
+        role: data.role,
+      })
+      navigate('/')
+    }
+  }
+
   return (
     <>
       <Paper
@@ -23,11 +64,13 @@ const Authenticate = ({ setIsRegister }) => {
             <TextField
               required
               sx={{ width: '75%' }}
-              id="username"
-              label="Username"
+              id="email"
+              label="Email"
               variant="outlined"
-              type="text"
+              type="email"
               autoComplete="off"
+              color="tertiary"
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               required
@@ -36,13 +79,17 @@ const Authenticate = ({ setIsRegister }) => {
               label="Password"
               variant="outlined"
               type="password"
+              color="tertiary"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               sx={{ width: '50%' }}
               variant="contained"
               color="tertiary"
               endIcon={<LoginIcon />}
-              type="submit"
+              onClick={() => {
+                handleAuthenticate()
+              }}
             >
               Authenticate
             </Button>

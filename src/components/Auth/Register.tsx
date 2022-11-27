@@ -4,7 +4,7 @@ import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 
 import { red } from '../../utils/colors'
 
-const Signup = ({ setIsRegister }) => {
+const Signup = ({ setIsRegister, setAlert }) => {
   return (
     <>
       <Paper
@@ -23,22 +23,13 @@ const Signup = ({ setIsRegister }) => {
             <TextField
               required
               sx={{ width: '75%' }}
-              id="username"
-              label="Username"
-              variant="outlined"
-              type="text"
-              autoComplete="nope"
-              size="small"
-            />
-            <TextField
-              required
-              sx={{ width: '75%' }}
               id="email"
               label="Email"
               variant="outlined"
               type="email"
               autoComplete="nope"
               size="small"
+              color="tertiary"
             />
             <TextField
               required
@@ -48,6 +39,7 @@ const Signup = ({ setIsRegister }) => {
               variant="outlined"
               type="password"
               size="small"
+              color="tertiary"
             />
             <TextField
               required
@@ -57,6 +49,7 @@ const Signup = ({ setIsRegister }) => {
               variant="outlined"
               type="password"
               size="small"
+              color="tertiary"
             />
             <Button
               sx={{ width: '50%' }}
