@@ -8,7 +8,6 @@ import { red } from '../../utils/colors'
 import useAuth from '../../hooks/useAuth'
 
 const Authenticate = ({ setIsRegister, setAlert }) => {
-  const navigate = useNavigate()
   const { setToken, setUser } = useAuth()
 
   const [email, setEmail] = useState('')
@@ -42,7 +41,7 @@ const Authenticate = ({ setIsRegister, setAlert }) => {
         email: data.email,
         role: data.role,
       })
-      navigate('/')
+      window.location.assign('/')
     }
   }
 

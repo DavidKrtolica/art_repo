@@ -6,10 +6,13 @@ import { red } from '../../utils/colors'
 import { useEffect } from 'react'
 
 const Logout = () => {
-  const { setToken, setUser } = useAuth()
+  const { setToken, token, setUser, user } = useAuth()
   useEffect(() => {
     setToken(null)
     setUser(null)
+    if (token && user) {
+      window.location.assign('/logout')
+    }
   }, [])
 
   const links: HomepageItem[] = [

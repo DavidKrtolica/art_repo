@@ -1,4 +1,4 @@
-import { useState, MouseEvent, KeyboardEvent } from 'react'
+import { useState, MouseEvent, KeyboardEvent, useEffect } from 'react'
 import {
   Fab,
   Drawer,
@@ -26,6 +26,7 @@ import useAuth from '../hooks/useAuth'
 const Navigation = () => {
   const theme = useTheme()
   const { user } = useAuth()
+
   const navSections: NavSection[] = [
     {
       name: user ? user.email.slice(0, user.email.lastIndexOf('@')) : null,
