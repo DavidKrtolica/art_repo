@@ -23,8 +23,8 @@ const Auth = () => {
       {alert ? (
         <Box justifyContent="center" display="flex">
           <Alert
-            sx={{ width: '100%' }}
-            variant="filled"
+            sx={{ width: '100%', mt: 2 }}
+            variant="outlined"
             severity={alert.severity}
           >
             {alert.message}

@@ -29,10 +29,10 @@ const Authenticate = ({ setIsRegister, setAlert }) => {
     })
     const data = await response.json()
 
-    if (data.message) {
+    if (data.error) {
       setAlert({
         severity: 'error',
-        message: data.message,
+        message: data.error,
       })
     } else {
       setToken(data.token)
@@ -86,7 +86,9 @@ const Authenticate = ({ setIsRegister, setAlert }) => {
               variant="contained"
               color="tertiary"
               endIcon={<LoginIcon />}
-              onClick={() => {
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault()
                 handleAuthenticate()
               }}
             >

@@ -1,10 +1,53 @@
+import { useState } from 'react'
 import { Paper, TextField, Button, Stack, Typography } from '@mui/material'
 import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 
 import { red } from '../../utils/colors'
+import { useNavigate } from 'react-router-dom'
 
 const Signup = ({ setIsRegister, setAlert }) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [repeatPassword, setRepeatPassword] = useState('')
+
+  const handleRegister = async () => {
+    const url = new URL(process.env.REACT_APP_API_BASE_URL + '/auth/register')
+
+    if (password === repeatPassword) {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      })
+      const data = await response.json()
+
+      if (data.error) {
+        setAlert({
+          severity: 'error',
+          message: data.error,
+        })
+      } else if (data.success) {
+        setAlert({
+          severity: 'success',
+          message: data.success,
+        })
+        setIsRegister(false)
+      }
+    } else {
+      setAlert({
+        severity: 'error',
+        message: 'The passwords do not match',
+      })
+    }
+  }
+
   return (
     <>
       <Paper
@@ -30,6 +73,7 @@ const Signup = ({ setIsRegister, setAlert }) => {
               autoComplete="nope"
               size="small"
               color="tertiary"
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               required
@@ -40,6 +84,7 @@ const Signup = ({ setIsRegister, setAlert }) => {
               type="password"
               size="small"
               color="tertiary"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <TextField
               required
@@ -50,6 +95,7 @@ const Signup = ({ setIsRegister, setAlert }) => {
               type="password"
               size="small"
               color="tertiary"
+              onChange={(e) => setRepeatPassword(e.target.value)}
             />
             <Button
               sx={{ width: '50%' }}
@@ -57,6 +103,10 @@ const Signup = ({ setIsRegister, setAlert }) => {
               type="submit"
               color="tertiary"
               endIcon={<AppRegistrationIcon />}
+              onClick={(e) => {
+                e.preventDefault()
+                handleRegister()
+              }}
             >
               Register
             </Button>
