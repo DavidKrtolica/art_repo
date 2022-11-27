@@ -7,6 +7,7 @@ import Homepage from './components/Homepage'
 import ArtworkGallery from './components/ArtworkGallery/ArtworkGallery'
 import ArtistHall from './components/ArtistHall/ArtistHall'
 import Auth from './components/Auth/Auth'
+import Logout from './components/Auth/Logout'
 import ArtworkPage from './components/Artwork/ArtworkPage'
 import ArtistComponent from './components/Artist/ArtistComponent'
 
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/auth" element={<Auth />} />
             <Route path="/artwork/:id" element={<ArtworkPage />} />
             <Route path="/artist" element={<ArtistComponent />} />
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

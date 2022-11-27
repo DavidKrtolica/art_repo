@@ -16,19 +16,22 @@ import ColorLensIcon from '@mui/icons-material/ColorLens'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
+import LogoutIcon from '@mui/icons-material/Logout'
 import HomeIcon from '@mui/icons-material/Home'
 import { Link } from 'react-router-dom'
 
 import { NavSection } from '../utils/types'
+import useAuth from '../hooks/useAuth'
 
 const Navigation = () => {
   const theme = useTheme()
+  const { user } = useAuth()
   const navSections: NavSection[] = [
     {
-      name: 'Home',
+      name: user ? user.email.slice(0, user.email.lastIndexOf('@')) : null,
+      // name: 'Home',
       href: '/',
       icon: <HomeIcon />,
-      noText: true,
     },
     {
       name: 'Artwork Gallery',
@@ -57,6 +60,12 @@ const Navigation = () => {
       ),
       props: { isRegister: true },
     },
+    {
+      name: 'Log Out',
+      href: '/logout',
+      icon: <LogoutIcon sx={{ fill: `${theme.palette.tertiary.main}` }} />,
+      topDivider: true,
+    },
   ]
   const anchor = 'left'
 
@@ -74,8 +83,21 @@ const Navigation = () => {
       setOpen(open)
     }
 
+  if (user) {
+    navSections.splice(3, 2)
+  } else {
+    navSections.splice(-1, 1)
+  }
   return (
     <>
+      {user && (
+        <Typography
+          sx={{ mt: 2, ml: 2 }}
+          style={{ color: `${theme.palette.tertiary.main}` }}
+        >
+          {user.email}
+        </Typography>
+      )}
       <Fab
         color="primary"
         size="medium"
@@ -96,27 +118,29 @@ const Navigation = () => {
           onKeyDown={toggleDrawer(false)}
         >
           <List>
-            {navSections.map((section) => (
-              <>
-                {section.topDivider && <Divider />}
-                <ListItem
-                  key={section.name}
-                  component={Link}
-                  to={section.href}
-                  disablePadding
-                  sx={{
-                    textDecoration: 'none',
-                    color: `${theme.palette.text.secondary}`,
-                  }}
-                  state={section.props}
-                >
-                  <ListItemButton>
-                    <ListItemIcon>{section.icon}</ListItemIcon>
-                    {!section.noText && <Typography>{section.name}</Typography>}
-                  </ListItemButton>
-                </ListItem>
-              </>
-            ))}
+            {navSections.map((section) => {
+              return (
+                <>
+                  {section.topDivider && <Divider />}
+                  <ListItem
+                    key={section.name}
+                    component={Link}
+                    to={section.href}
+                    disablePadding
+                    sx={{
+                      textDecoration: 'none',
+                      color: `${theme.palette.text.secondary}`,
+                    }}
+                    state={section.props}
+                  >
+                    <ListItemButton>
+                      <ListItemIcon>{section.icon}</ListItemIcon>
+                      {section.name && <Typography>{section.name}</Typography>}
+                    </ListItemButton>
+                  </ListItem>
+                </>
+              )
+            })}
           </List>
         </Box>
       </Drawer>

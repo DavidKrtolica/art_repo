@@ -33,6 +33,7 @@ export type NavSection = {
   noText?: boolean
   topDivider?: boolean
   props?: object
+  authRequired?: boolean
 }
 
 export type HomepageItem = {
