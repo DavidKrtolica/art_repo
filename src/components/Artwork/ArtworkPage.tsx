@@ -1,6 +1,6 @@
 import { Typography, Box, Divider } from '@mui/material'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { gql, useQuery } from '@apollo/client'
 
 import ImageViewer from './ImageViewer'
@@ -65,13 +65,6 @@ const ArtworkPage = () => {
     >
       {artwork && (
         <>
-          <Typography
-            variant="h4"
-            color={'text.secondary'}
-            sx={{ ...sxCommon, mt: 3 }}
-          >
-            {artwork.creatorId}
-          </Typography>
           <Typography variant="h3" sx={sxCommon}>
             {artwork.title}
           </Typography>
@@ -82,12 +75,19 @@ const ArtworkPage = () => {
           <Typography
             variant="h5"
             color={'text.secondary'}
-            sx={{ ...sxCommon, mb: 5 }}
+            sx={{ ...sxCommon, mb: 2.5 }}
           >
             {artwork.artistNote}
           </Typography>
-          <Typography variant="h6" sx={sxCommon}>
+          <Typography variant="h6" sx={{ ...sxCommon, mb: 2.5 }}>
             {artwork.curatorDescription}
+          </Typography>
+          <Typography
+            variant="h4"
+            color={'text.secondary'}
+            sx={{ ...sxCommon, mb: 4 }}
+          >
+            <Link to={`/artist/${artwork.creatorId}`}>Find out more about the Artist behind this painting!</Link>
           </Typography>
         </>
       )}

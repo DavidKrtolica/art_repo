@@ -46,13 +46,19 @@ export type HomepageItem = {
 
 export type Artist = {
   id: string
-  partyType: string
   fullName: string
   citedName: string
-  role: string
   nationality: string
   birthDate: string
-  deathDate: string
   birthPlace: string
   deathPlace: string
+}
+
+//For use on the artist hall
+export type HallArtist = {
+  id: string
+  fullName: string
+  citedName: string
+  nationality: string
+  birthDate: string
 }

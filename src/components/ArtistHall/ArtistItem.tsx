@@ -1,13 +1,12 @@
 import { TableRow, TableCell } from '@mui/material'
-import { Artist } from '../../utils/types'
+import { HallArtist } from '../../utils/types'
 import { Link } from 'react-router-dom'
 
 type ArtistItemProps = {
-  artist: Artist
+  artist: HallArtist
 }
 
 const ArtistItem = ({ artist }: ArtistItemProps) => {
-  const keys = Object.keys(artist)
 
   return (
     <TableRow
@@ -17,12 +16,12 @@ const ArtistItem = ({ artist }: ArtistItemProps) => {
       key={artist.id}
       sx={{ textDecoration: 'none' }}
       component={Link}
-      to="/artist"
-      state={ artist }
+      to={`/artist/${artist.id}`}
     >
-      {keys.map((key) => (
-        <TableCell>{artist[key]}</TableCell>
-      ))}
+      <TableCell>{ artist.fullName }</TableCell>
+      <TableCell>{ artist.citedName }</TableCell>
+      <TableCell>{ artist.nationality }</TableCell>
+      <TableCell>{ artist.birthDate ? new Date(parseInt(artist.birthDate)).toDateString() : '' }</TableCell>
     </TableRow>
   )
 }
