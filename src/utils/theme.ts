@@ -19,6 +19,13 @@ declare module '@mui/material/Button' {
   }
 }
 
+declare module '@mui/material/TextField' {
+  interface TextFieldPropsColorOverrides {
+    tertiary: true
+    yellow: true
+  }
+}
+
 const { palette } = createTheme()
 export const darkTheme = createTheme({
   typography: {

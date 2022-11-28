@@ -7,6 +7,7 @@ import Homepage from './components/Homepage'
 import ArtworkGallery from './components/ArtworkGallery/ArtworkGallery'
 import ArtistHall from './components/ArtistHall/ArtistHall'
 import Auth from './components/Auth/Auth'
+import Logout from './components/Auth/Logout'
 import ArtworkPage from './components/Artwork/ArtworkPage'
 import ArtistComponent from './components/Artist/ArtistComponent'
 
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/hall" element={<ArtistHall />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/artwork/:id" element={<ArtworkPage />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="/artist/:id" element={<ArtistComponent />} />
           </Routes>
         </BrowserRouter>
