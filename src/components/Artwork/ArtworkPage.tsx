@@ -4,33 +4,42 @@ import { useParams, Link } from 'react-router-dom'
 import { gql, useQuery } from '@apollo/client'
 
 import ImageViewer from './ImageViewer'
-import { Artwork } from '../../utils/types'
+import { Artist, Artwork } from '../../utils/types'
 
 const GET_ARTWORK = gql`
-  query getArtwork($id: ID!) {
-    artwork(id: $id) {
-      id
-      title
-      creationYear
-      medium
-      curatorDescription
-      itemHeight
-      itemWidth
-      itemDepth
-      itemDiameter
-      artistNote
-      image
-      creatorId
-      submittedAt
+  query ArtworkPage($artworkId: ID!) {
+    artworkPage(artworkId: $artworkId) {
+      artist {
+        id
+        citedName
+      }
+      artwork {
+        id
+        title
+        creationYear
+        medium
+        curatorDescription
+        itemHeight
+        itemWidth
+        itemDepth
+        itemDiameter
+        artistNote
+        image
+        creatorId
+        submittedAt
+      }
     }
   }
 `
 
 type GetArtworkQueryResult = {
-  artwork: Artwork
+  artworkPage: {
+    artist: Artist
+    artwork: Artwork
+  }
 }
 type GetArtworkQueryVariables = {
-  id?: string
+  artworkId?: string
 }
 
 const ArtworkPage = () => {
@@ -44,18 +53,21 @@ const ArtworkPage = () => {
     GetArtworkQueryVariables
   >(GET_ARTWORK, {
     variables: {
-      id,
+      artworkId: id,
     },
   })
 
   const [artwork, setArtwork] = useState<Artwork>()
-
+  const [artist, setArtist] = useState<Artist>()
   useEffect(() => {
     if (!loading && data) {
-      setArtwork(data.artwork)
+      setArtwork(data.artworkPage.artwork)
+      setArtist(data.artworkPage.artist)
     }
   }, [loading, data])
 
+  console.log(artist)
+  console.log(artwork)
   return (
     <Box
       display="flex"
@@ -63,7 +75,7 @@ const ArtworkPage = () => {
       justifyContent="center"
       flexDirection="column"
     >
-      {artwork && (
+      {artwork && artist && (
         <>
           <Typography variant="h3" sx={sxCommon}>
             {artwork.title}
@@ -87,7 +99,9 @@ const ArtworkPage = () => {
             color={'text.secondary'}
             sx={{ ...sxCommon, mb: 4 }}
           >
-            <Link to={`/artist/${artwork.creatorId}`}>Find out more about the Artist behind this painting!</Link>
+            <Link to={`/artist/${artwork.creatorId}`}>
+              Find out more about the Artist behind this painting!
+            </Link>
           </Typography>
         </>
       )}

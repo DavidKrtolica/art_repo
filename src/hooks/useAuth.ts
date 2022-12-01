@@ -30,7 +30,6 @@ export default function useAuth() {
     setToken: saveToken,
     token,
     setUser: saveUser,
-    getUser,
     user,
   }
 }
