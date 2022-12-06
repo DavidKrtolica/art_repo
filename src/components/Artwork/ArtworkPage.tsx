@@ -75,7 +75,7 @@ const ArtworkPage = () => {
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
-      sx={{ mb: 5 }}
+      sx={{ my: 5 }}
     >
       {artwork && artist && (
         <>

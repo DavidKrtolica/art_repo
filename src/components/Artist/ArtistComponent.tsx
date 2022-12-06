@@ -73,7 +73,7 @@ const ArtistComponent = () => {
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
-      sx={{ mb: 5 }}
+      sx={{ my: 5 }}
     >
       {artist && artworks && (
         <>
@@ -104,12 +104,7 @@ const ArtistComponent = () => {
           <Typography variant="h6" sx={sxCommon}>
             {artist.artworksCount}
           </Typography>
-          <ImageList
-            sx={{ height: 500, ...sxCommon }}
-            gap={50}
-            cols={3}
-            rowHeight={100}
-          >
+          <ImageList sx={{ height: 500, ...sxCommon }} gap={50} cols={3}>
             {artworks.map((artwork) => (
               <ArtworkListItem artwork={artwork} />
             ))}
@@ -141,7 +136,7 @@ const ArtworkListItem = ({ artwork }: { artwork: GalleryArtwork }) => {
           <ImageListItemBar
             title={artwork.title}
             subtitle={artwork.artistNote}
-            position="top"
+            position="bottom"
           />
         )}
       </ImageListItem>
