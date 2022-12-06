@@ -1,4 +1,13 @@
-import { Box, TablePagination, Table, TableHead, TableRow, TableCell, TableBody, Paper } from '@mui/material'
+import {
+  Box,
+  TablePagination,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Paper,
+} from '@mui/material'
 import { useState, useEffect, ChangeEvent } from 'react'
 import { useQuery, gql } from '@apollo/client'
 
@@ -7,38 +16,37 @@ import PageHeader from '../PageHeader'
 import ArtistItem from './ArtistItem'
 
 const GET_ARTISTS = gql`
-query getArtists {
-  artists {
-    id
-    fullName
-    citedName
-    nationality
-    birthDate
+  query getArtists {
+    artists {
+      id
+      fullName
+      citedName
+      nationality
+      artworksCount
+    }
   }
-}
-`;
+`
 
 interface Column {
-  id: 'fullName' | 'citedName' | 'nationality' | 'birthDate';
-  label: string;
-  minWidth?: number;
-  align?: 'right';
+  id: 'fullName' | 'citedName' | 'nationality' | 'artworksCount'
+  label: string
+  minWidth?: number
+  align?: 'right'
 }
 
 const columns: Column[] = [
   { id: 'fullName', label: 'Full Name' },
   { id: 'citedName', label: 'Cited Name' },
   { id: 'nationality', label: 'Nationality' },
-  { id: 'birthDate', label: 'Birth Date' },
-];
+  { id: 'artworksCount', label: 'No. of artworks' },
+]
 
 type GetArtistsQueryResult = {
   artists: HallArtist[]
 }
 
 const ArtistHall = () => {
-  const { loading, error, data } =
-    useQuery<GetArtistsQueryResult>(GET_ARTISTS)
+  const { loading, error, data } = useQuery<GetArtistsQueryResult>(GET_ARTISTS)
 
   const [artists, setArtists] = useState<HallArtist[]>([])
 
@@ -48,8 +56,7 @@ const ArtistHall = () => {
     }
   }, [loading, data])
 
-
-/*const allArtists = mockArtists.map((artist) =>
+  /*const allArtists = mockArtists.map((artist) =>
   Object.fromEntries(Object.entries(artist).filter(([_, v]) => v != null))
 ) as Artist[]
 
@@ -85,27 +92,37 @@ const ArtistHall = () => {
   return (
     <>
       <PageHeader title="Artist Hall" color="secondary" />
-      <Box display="flex" alignItems="center" justifyContent="center" padding="100px">
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        padding="100px"
+        sx={{ mb: 5 }}
+      >
         <Paper sx={{ width: '100%' }}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table" padding='normal'>
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  style={{ fontSize: "large", fontWeight: "bold" }}
-                >
-                  {column.label}
-                </TableCell>
+          <Table
+            sx={{ minWidth: 650 }}
+            aria-label="simple table"
+            padding="normal"
+          >
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    style={{ fontSize: 'large', fontWeight: 'bold' }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {artists.map((artist) => (
+                <ArtistItem artist={artist}></ArtistItem>
               ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {artists.map((artist) => (
-              <ArtistItem artist={artist}></ArtistItem>
-            ))}
-          </TableBody>
-        </Table>
+            </TableBody>
+          </Table>
         </Paper>
       </Box>
       <Box display="flex" alignItems="center" justifyContent="center">

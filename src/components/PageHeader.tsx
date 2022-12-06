@@ -8,7 +8,7 @@ const PageHeader = ({ title, color }: PageHeaderProps) => {
       <Typography
         variant="h3"
         color={color}
-        sx={{ width: '80vw', px: '20px', m: 3 }}
+        sx={{ width: '80vw', px: '20px', m: 3, mb: 5 }}
       >
         {title}
       </Typography>

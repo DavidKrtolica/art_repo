@@ -7,7 +7,6 @@ type ArtistItemProps = {
 }
 
 const ArtistItem = ({ artist }: ArtistItemProps) => {
-
   return (
     <TableRow
       hover
@@ -18,10 +17,10 @@ const ArtistItem = ({ artist }: ArtistItemProps) => {
       component={Link}
       to={`/artist/${artist.id}`}
     >
-      <TableCell>{ artist.fullName }</TableCell>
-      <TableCell>{ artist.citedName }</TableCell>
-      <TableCell>{ artist.nationality }</TableCell>
-      <TableCell>{ artist.birthDate ? new Date(parseInt(artist.birthDate)).toDateString() : '' }</TableCell>
+      <TableCell>{artist.fullName}</TableCell>
+      <TableCell>{artist.citedName}</TableCell>
+      <TableCell>{artist.nationality}</TableCell>
+      <TableCell>{artist.artworksCount}</TableCell>
     </TableRow>
   )
 }

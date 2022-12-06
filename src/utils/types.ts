@@ -52,6 +52,7 @@ export type Artist = {
   birthDate: string
   birthPlace: string
   deathPlace: string
+  artworksCount: number
 }
 
 //For use on the artist hall
@@ -60,5 +61,5 @@ export type HallArtist = {
   fullName: string
   citedName: string
   nationality: string
-  birthDate: string
+  artworksCount: number
 }

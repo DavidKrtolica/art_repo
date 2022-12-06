@@ -2,6 +2,7 @@ import { Typography, Box, Divider } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { gql, useQuery } from '@apollo/client'
+import { useTheme } from '@mui/material/styles'
 
 import ImageViewer from './ImageViewer'
 import { Artist, Artwork } from '../../utils/types'
@@ -43,6 +44,8 @@ type GetArtworkQueryVariables = {
 }
 
 const ArtworkPage = () => {
+  const theme = useTheme()
+
   const sxCommon = {
     width: '60vw',
   }
@@ -66,17 +69,30 @@ const ArtworkPage = () => {
     }
   }, [loading, data])
 
-  console.log(artist)
-  console.log(artwork)
   return (
     <Box
       display="flex"
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
+      sx={{ my: 5 }}
     >
       {artwork && artist && (
         <>
+          <Link to={`/artist/${artist.id}`} style={{ textDecoration: 'none' }}>
+            <Typography
+              variant="h4"
+              sx={{
+                '&:hover': {
+                  color: theme.palette.secondary.main,
+                },
+                ...sxCommon,
+              }}
+              color={'text.secondary'}
+            >
+              {artist.citedName}
+            </Typography>
+          </Link>
           <Typography variant="h3" sx={sxCommon}>
             {artwork.title}
           </Typography>
@@ -91,17 +107,35 @@ const ArtworkPage = () => {
           >
             {artwork.artistNote}
           </Typography>
-          <Typography variant="h6" sx={{ ...sxCommon, mb: 2.5 }}>
+          <Typography variant="h6" sx={{ ...sxCommon, mb: 5 }}>
             {artwork.curatorDescription}
           </Typography>
           <Typography
-            variant="h4"
+            variant="h6"
+            sx={{ ...sxCommon, mb: 2.5 }}
             color={'text.secondary'}
-            sx={{ ...sxCommon, mb: 4 }}
           >
-            <Link to={`/artist/${artwork.creatorId}`}>
-              Find out more about the Artist behind this painting!
-            </Link>
+            Additional information
+          </Typography>
+          <Typography variant="h6" sx={{ ...sxCommon }}>
+            {`Medium: ${artwork.medium}`}
+          </Typography>
+          <Typography variant="h6" sx={{ ...sxCommon }}>
+            {`Width: ${artwork.itemWidth} cm`}
+          </Typography>
+          <Typography variant="h6" sx={{ ...sxCommon }}>
+            {`Height: ${artwork.itemHeight} cm`}
+          </Typography>
+          <Typography variant="h6" sx={{ ...sxCommon }}>
+            {`Depth: ${artwork.itemDepth} cm`}
+          </Typography>
+          <Typography variant="h6" sx={{ ...sxCommon }}>
+            {`Diameter: ${artwork.itemDiameter} cm`}
+          </Typography>
+          <Typography variant="h6" sx={{ ...sxCommon }}>
+            {`Added at: ${new Date(
+              parseInt(artwork.submittedAt)
+            ).toDateString()}`}
           </Typography>
         </>
       )}

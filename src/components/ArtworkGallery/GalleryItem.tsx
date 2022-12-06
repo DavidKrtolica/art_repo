@@ -29,7 +29,7 @@ const GalleryItem = ({ artwork }: GalleryItemProps) => {
           <ImageListItemBar
             title={artwork.title}
             subtitle={artwork.artistNote}
-            position="top"
+            position="bottom"
           />
         )}
       </ImageListItem>
