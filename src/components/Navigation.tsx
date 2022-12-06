@@ -25,7 +25,14 @@ import useAuth from '../hooks/useAuth'
 
 const Navigation = () => {
   const theme = useTheme()
+  /*const [currentLocation, setCurrentLocation] = useState(
+    window.location.pathname
+  )*/
   const { user } = useAuth()
+
+  /*useEffect(() => {
+    setCurrentLocation(window.location.pathname)
+  }, [window.location.pathname])*/
 
   const navSections: NavSection[] = [
     {
@@ -89,6 +96,7 @@ const Navigation = () => {
   } else {
     navSections.splice(-1, 1)
   }
+
   return (
     <>
       {user && (

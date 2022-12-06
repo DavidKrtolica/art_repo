@@ -19,8 +19,8 @@ import PageHeader from '../PageHeader'
 import GalleryItem from './GalleryItem'
 
 const GET_ARTWORKS = gql`
-  query getArtworks {
-    artworks {
+  query getArtworks($search: String) {
+    artworks(search: $search) {
       id
       title
       artistNote
@@ -32,16 +32,26 @@ type GetArtworksQueryResult = {
   artworks: GalleryArtwork[]
 }
 
-const ArtworkGallery = () => {
-  const { loading, error, data } =
-    useQuery<GetArtworksQueryResult>(GET_ARTWORKS)
+type GetArtworkQueryVariables = {
+  search?: string
+}
 
+const ArtworkGallery = () => {
   const [artworks, setArtworks] = useState<GalleryArtwork[]>([])
   const [count, setCount] = useState(0)
   const [page, setPage] = useState(0)
   const [pageSize, setPageSize] = useState(5)
   const [columns, setColumns] = useState(3)
   const [search, setSearch] = useState('')
+
+  const { loading, error, data, refetch } = useQuery<
+    GetArtworksQueryResult,
+    GetArtworkQueryVariables
+  >(GET_ARTWORKS, {
+    variables: {
+      search: undefined,
+    },
+  })
 
   const getPaginatedArtworks = (
     artworks: GalleryArtwork[],
@@ -77,6 +87,14 @@ const ArtworkGallery = () => {
     }
   }, [page, pageSize])
 
+  const enterSubmit = (e) => {
+    if (e.key === 'Enter') {
+      refetch({ search })
+    }
+    e.target.removeEventListener('keydown', enterSubmit)
+  }
+
+  window.addEventListener('keydown', enterSubmit)
   return (
     <>
       <PageHeader title="Gallery" color="primary" />
@@ -98,13 +116,21 @@ const ArtworkGallery = () => {
               variant="outlined"
               size="small"
               value={search}
+              autoComplete="off"
               onChange={(e) => {
                 setSearch(e.target.value)
               }}
               sx={{ p: 1 }}
             />
           </FormControl>
-          <IconButton sx={{ mr: 20 }} color="primary">
+          <IconButton
+            onClick={() => {
+              refetch({ search })
+            }}
+            sx={{ mr: 20 }}
+            color="primary"
+            type="submit"
+          >
             <SearchIcon />
           </IconButton>
           <FormControl sx={{ width: 200, p: 1 }}>
