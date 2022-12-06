@@ -174,7 +174,7 @@ const ArtworkGallery = () => {
         <ImageList
           sx={{ width: '80vw', padding: '20px' }}
           cols={columns}
-          gap={50}
+          gap={80 / (columns - 1)}
           //variant="masonry"
         >
           {artworks?.map((artwork) => (
