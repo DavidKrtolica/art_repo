@@ -8,6 +8,12 @@ const Homepage = () => {
 
   const homepageItems: HomepageItem[] = [
     {
+      text: `Curator's Corner`,
+      href: '/curator',
+      mainColor: 'red.main',
+      darkColor: 'red.dark',
+    },
+    {
       text: 'Artwork Gallery',
       href: '/gallery',
       mainColor: 'primary',
