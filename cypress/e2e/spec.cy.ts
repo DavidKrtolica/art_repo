@@ -1,13 +1,4 @@
-describe('First test', () => {
-  //QUERY GRAPHQL DATA - not needed?
-  /*beforeEach(() => {
-    cy.intercept('GET', '/api/products', {
-      body: products,
-      statusCode: 200,
-    });
-    cy.visit('/products');
-  });*/
-
+describe('E2E and Integration tests', () => {
   it('should visit the home page', () => {
     cy.visit("http://localhost:3000/");
   });
@@ -25,4 +16,26 @@ describe('First test', () => {
     cy.get('[alt="Vitamin Chaos"]').click();
     cy.contains("Mambo Maribel");
   });
+
+  it('should visit login page, successfully login, open navbar and successfully logout', () => {
+    cy.visit("http://localhost:3000/auth");
+    cy.get('[id="email"]').type('test@email.com');
+    cy.get('[id="password"]').type('test123');
+    cy.get('[id="login-btn"]').click();
+    cy.contains('test@email.com');
+    cy.contains('Log Out');
+    cy.get('[data-testid="DoubleArrowIcon"]').click();
+    cy.get('[id="logout-btn"]').click();
+    cy.contains('You have successfully logged out.');
+  });
+
+  it('should visit gallery page, search for an artwork and go to that artwork page', () => {
+    cy.visit("http://localhost:3000/gallery");
+    cy.get('[id="outlined-basic"]').type('Spiked');
+    cy.get('[id="search-submit-icon"]').click();
+    cy.get('img').should('have.length', 1).click();
+    cy.url().should('include', '/artwork/7d5a967c-7178-11ed-9747-772d46b82e60');
+  });
 })
+
+export {};
