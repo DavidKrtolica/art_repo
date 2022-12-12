@@ -130,6 +130,7 @@ const ArtworkGallery = () => {
             sx={{ mr: 20 }}
             color="primary"
             type="submit"
+            id="search-submit-icon"
           >
             <SearchIcon />
           </IconButton>
@@ -176,6 +177,7 @@ const ArtworkGallery = () => {
           cols={columns}
           gap={80 / (columns - 1)}
           //variant="masonry"
+          id="image-list"
         >
           {artworks?.map((artwork) => (
             <GalleryItem artwork={artwork} />
