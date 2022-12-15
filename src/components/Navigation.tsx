@@ -71,7 +71,7 @@ const Navigation = () => {
     {
       name: 'Log Out',
       href: '/logout',
-      icon: <LogoutIcon sx={{ fill: `${theme.palette.tertiary.main}` }} />,
+      icon: <LogoutIcon id='logout-btn' sx={{ fill: `${theme.palette.tertiary.main}` }} />,
       topDivider: true,
     },
   ]
@@ -133,7 +133,7 @@ const Navigation = () => {
                 <>
                   {section.topDivider && <Divider />}
                   <ListItem
-                    key={section.name}
+                    key={section.name}  
                     component={Link}
                     to={section.href}
                     disablePadding

@@ -82,6 +82,7 @@ const Authenticate = ({ setIsRegister, setAlert }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Button
+              id="login-btn"
               sx={{ width: '50%' }}
               variant="contained"
               color="tertiary"
