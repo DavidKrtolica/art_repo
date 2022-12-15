@@ -11,6 +11,7 @@ import Logout from './components/Auth/Logout'
 import ArtworkPage from './components/Artwork/ArtworkPage'
 import ArtistComponent from './components/Artist/ArtistComponent'
 import CuratorCorner from './components/Curator/CuratorCorner'
+import ProfilePage from './components/Curator/ProfilePage'
 
 import { darkTheme } from './utils/theme'
 
@@ -29,7 +30,8 @@ const App = () => {
             <Route path="/artwork/:id" element={<ArtworkPage />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/artist/:id" element={<ArtistComponent />} />
-            <Route path="/curator" element={<CuratorCorner />} />s
+            <Route path="/curator" element={<CuratorCorner />} />
+            <Route path="/curator/profile" element={<ProfilePage />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

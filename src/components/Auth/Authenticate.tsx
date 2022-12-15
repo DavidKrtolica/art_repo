@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Paper, TextField, Button, Stack, Typography } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
 import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 
@@ -40,6 +39,7 @@ const Authenticate = ({ setIsRegister, setAlert }) => {
         id: data.id,
         email: data.email,
         role: data.role,
+        isLive: data.isLive,
       })
       window.location.assign('/')
     }

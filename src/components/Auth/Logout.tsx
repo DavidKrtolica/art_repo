@@ -29,7 +29,6 @@ const Logout = () => {
       darkColor: 'tertiary.dark',
     },
   ]
-
   return (
     <Container>
       <Box
