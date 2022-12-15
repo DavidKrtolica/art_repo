@@ -36,6 +36,12 @@ describe('E2E and Integration tests', () => {
     cy.get('img').should('have.length', 1).click();
     cy.url().should('include', '/artwork/7d5a967c-7178-11ed-9747-772d46b82e60');
   });
+
+  it('should visit artist hall page and verify there are 5 artists in the table', () => {
+    cy.visit("http://localhost:3000/hall");
+    cy.get('table tbody a').should('have.length', 5);
+    cy.get('table tbody').find('a').contains("Mossholder");
+  });
 })
 
 export {};
