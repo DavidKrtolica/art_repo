@@ -17,7 +17,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 
 import useAuth from '../../hooks/useAuth'
 
-const ProfilePage = () => {
+const ProfileForm = () => {
   const { user } = useAuth()
 
   /*const [firstName, setFirstName] = useState('')
@@ -204,4 +204,4 @@ const ProfilePage = () => {
   )
 }
 
-export default ProfilePage
+export default ProfileForm
