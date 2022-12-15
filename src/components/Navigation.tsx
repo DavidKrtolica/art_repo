@@ -18,6 +18,7 @@ import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 import LogoutIcon from '@mui/icons-material/Logout'
 import HomeIcon from '@mui/icons-material/Home'
+import CollectionsIcon from '@mui/icons-material/Collections'
 import { Link } from 'react-router-dom'
 
 import { NavSection } from '../utils/types'
@@ -37,7 +38,7 @@ const Navigation = () => {
     {
       name: `Curator's Corner`,
       href: '/curator',
-      icon: <ColorLensIcon sx={{ fill: `${theme.palette.red.main}` }} />,
+      icon: <CollectionsIcon sx={{ fill: `${theme.palette.red.main}` }} />,
       textColor: 'red',
     },
     {
@@ -91,9 +92,10 @@ const Navigation = () => {
     }
 
   if (user) {
-    navSections.splice(3, 2)
+    navSections.splice(4, 2)
   } else {
     navSections.splice(-1, 1)
+    navSections.splice(1, 1)
   }
 
   return (
