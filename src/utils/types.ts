@@ -55,6 +55,23 @@ export type Artist = {
   artworksCount: number
 }
 
+export type Profile = {
+  id: string
+  firstName?: string
+  lastName?: string
+  phone?: string
+  birthDate?: string
+  gender: string
+  address?: {
+    addressLine: string
+    zip: string
+    city: string
+    region: string
+    country: string
+  }
+  about?: string
+}
+
 //For use on the artist hall
 export type HallArtist = {
   id: string

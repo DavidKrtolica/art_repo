@@ -10,21 +10,56 @@ import {
   Button,
 } from '@mui/material'
 import { useState } from 'react'
-import { Dayjs } from 'dayjs'
+import dayjs from 'dayjs'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { gql, useQuery } from '@apollo/client'
+import { useEffect } from 'react'
 
-import useAuth from '../../hooks/useAuth'
+import useAuth from '../../../hooks/useAuth'
+import { Profile } from '../../../utils/types'
 
-const ProfileForm = () => {
+const ProfileForm = ({ profile }: { profile: Profile | null }) => {
   const { user } = useAuth()
 
-  /*const [firstName, setFirstName] = useState('')
+  const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [phone, setPhone] = useState('')*/
-  const [birthDate, setBirthDate] = useState<Dayjs | null>(null)
+  const [phone, setPhone] = useState('')
+  const [address, setAddress] = useState({
+    addressLine: '',
+    zip: '',
+    city: '',
+    region: '',
+    country: '',
+  })
+  const [birthDate, setBirthDate] = useState<dayjs.Dayjs | null>(null)
   const [gender, setGender] = useState('')
+  const [about, setAbout] = useState('')
+
+  useEffect(() => {
+    if (profile) {
+      setFirstName(profile.firstName || '')
+      setLastName(profile.lastName || '')
+      setPhone(profile.phone || '')
+      setGender(profile.gender || '')
+      if (profile.birthDate) {
+        setBirthDate(
+          dayjs(new Date(parseInt(profile.birthDate)).toDateString())
+        )
+      }
+      setAddress(
+        profile.address || {
+          addressLine: '',
+          zip: '',
+          city: '',
+          region: '',
+          country: '',
+        }
+      )
+      setAbout(profile.about || '')
+    }
+  }, [profile])
 
   const sxCommon = {
     width: '60vw',
@@ -68,6 +103,10 @@ const ProfileForm = () => {
                 fullWidth
                 label="First name"
                 sx={{ mb: 2.5 }}
+                value={firstName}
+                onChange={(e) => {
+                  setFirstName(e.target.value)
+                }}
                 variant="standard"
                 autoComplete="no"
               />
@@ -76,6 +115,10 @@ const ProfileForm = () => {
               <TextField
                 fullWidth
                 sx={{ mb: 2.5 }}
+                value={lastName}
+                onChange={(e) => {
+                  setLastName(e.target.value)
+                }}
                 label="Last name"
                 variant="standard"
                 autoComplete="no"
@@ -128,6 +171,10 @@ const ProfileForm = () => {
                 fullWidth
                 sx={{ mb: 10 }}
                 label="Phone number"
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value)
+                }}
                 type="tel"
                 variant="standard"
                 autoComplete="no"
@@ -141,7 +188,14 @@ const ProfileForm = () => {
             fullWidth
             label="Address line"
             sx={{ mb: 2.5 }}
+            value={address.addressLine}
             variant="standard"
+            onChange={(e) => {
+              setAddress({
+                ...address,
+                addressLine: e.target.value,
+              })
+            }}
             autoComplete="no"
           />
           <Grid container spacing={2}>
@@ -149,8 +203,15 @@ const ProfileForm = () => {
               <TextField
                 fullWidth
                 label="Zip code"
+                value={address.zip}
                 sx={{ mb: 2.5 }}
                 variant="standard"
+                onChange={(e) => {
+                  setAddress({
+                    ...address,
+                    zip: e.target.value,
+                  })
+                }}
                 autoComplete="no"
               />
             </Grid>
@@ -158,6 +219,13 @@ const ProfileForm = () => {
               <TextField
                 fullWidth
                 label="City"
+                value={address.city}
+                onChange={(e) => {
+                  setAddress({
+                    ...address,
+                    city: e.target.value,
+                  })
+                }}
                 sx={{ mb: 2.5 }}
                 variant="standard"
                 autoComplete="no"
@@ -169,6 +237,13 @@ const ProfileForm = () => {
               <TextField
                 fullWidth
                 label="Region"
+                value={address.region}
+                onChange={(e) => {
+                  setAddress({
+                    ...address,
+                    region: e.target.value,
+                  })
+                }}
                 sx={{ mb: 10 }}
                 variant="standard"
                 autoComplete="no"
@@ -178,8 +253,15 @@ const ProfileForm = () => {
               <TextField
                 fullWidth
                 label="Country"
+                value={address.country}
                 sx={{ mb: 10 }}
                 variant="standard"
+                onChange={(e) => {
+                  setAddress({
+                    ...address,
+                    country: e.target.value,
+                  })
+                }}
                 autoComplete="no"
               />
             </Grid>
@@ -191,7 +273,11 @@ const ProfileForm = () => {
           <TextField
             label="About you"
             multiline
+            value={about}
             rows={4}
+            onChange={(e) => {
+              setAbout(e.target.value)
+            }}
             sx={{ mb: 5 }}
             variant="filled"
           />
