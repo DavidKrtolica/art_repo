@@ -12,6 +12,7 @@ import ArtworkPage from './components/Artwork/ArtworkPage'
 import ArtistComponent from './components/Artist/ArtistComponent'
 import CuratorCorner from './components/Curator/CuratorCorner'
 import ProfileForm from './components/Curator/ProfileForm'
+import ArtworkForm from './components/Curator/ArtworkForm'
 
 import { darkTheme } from './utils/theme'
 
@@ -32,6 +33,7 @@ const App = () => {
             <Route path="/artist/:id" element={<ArtistComponent />} />
             <Route path="/curator" element={<CuratorCorner />} />
             <Route path="/curator/profile" element={<ProfileForm />} />
+            <Route path="/curator/artwork" element={<ArtworkForm />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
