@@ -1,4 +1,4 @@
-import { Typography, Box, Divider } from '@mui/material'
+import { Typography, Box } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { gql, useQuery } from '@apollo/client'

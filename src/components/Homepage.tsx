@@ -8,6 +8,12 @@ const Homepage = () => {
 
   const homepageItems: HomepageItem[] = [
     {
+      text: `Curator's Corner`,
+      href: '/curator',
+      mainColor: 'red.main',
+      darkColor: 'red.dark',
+    },
+    {
       text: 'Artwork Gallery',
       href: '/gallery',
       mainColor: 'primary',
@@ -41,9 +47,10 @@ const Homepage = () => {
   ]
 
   if (user) {
-    homepageItems.splice(2, 2)
+    homepageItems.splice(3, 2)
   } else {
     homepageItems.splice(-1, 1)
+    homepageItems.splice(0, 1)
   }
 
   return (

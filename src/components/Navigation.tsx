@@ -18,6 +18,7 @@ import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 import LogoutIcon from '@mui/icons-material/Logout'
 import HomeIcon from '@mui/icons-material/Home'
+import CollectionsIcon from '@mui/icons-material/Collections'
 import { Link } from 'react-router-dom'
 
 import { NavSection } from '../utils/types'
@@ -25,14 +26,7 @@ import useAuth from '../hooks/useAuth'
 
 const Navigation = () => {
   const theme = useTheme()
-  /*const [currentLocation, setCurrentLocation] = useState(
-    window.location.pathname
-  )*/
   const { user } = useAuth()
-
-  /*useEffect(() => {
-    setCurrentLocation(window.location.pathname)
-  }, [window.location.pathname])*/
 
   const navSections: NavSection[] = [
     {
@@ -40,6 +34,12 @@ const Navigation = () => {
       // name: 'Home',
       href: '/',
       icon: <HomeIcon />,
+    },
+    {
+      name: `Curator's Corner`,
+      href: '/curator',
+      icon: <CollectionsIcon sx={{ fill: `${theme.palette.red.main}` }} />,
+      textColor: 'red',
     },
     {
       name: 'Artwork Gallery',
@@ -92,9 +92,10 @@ const Navigation = () => {
     }
 
   if (user) {
-    navSections.splice(3, 2)
+    navSections.splice(4, 2)
   } else {
     navSections.splice(-1, 1)
+    navSections.splice(1, 1)
   }
 
   return (

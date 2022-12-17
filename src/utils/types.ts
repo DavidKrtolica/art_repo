@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-
+import { AlertColor } from '@mui/material'
 //For use on the artwork page
 export type Artwork = {
   id: string
@@ -55,6 +55,23 @@ export type Artist = {
   artworksCount: number
 }
 
+export type Profile = {
+  id: string
+  firstName?: string
+  lastName?: string
+  phone?: string
+  birthDate?: string
+  gender: string
+  address?: {
+    addressLine: string
+    zip: string
+    city: string
+    region: string
+    country: string
+  }
+  about?: string
+}
+
 //For use on the artist hall
 export type HallArtist = {
   id: string
@@ -62,4 +79,9 @@ export type HallArtist = {
   citedName: string
   nationality: string
   artworksCount: number
+}
+
+export type SnackbarAlert = {
+  severity: AlertColor
+  message: string
 }

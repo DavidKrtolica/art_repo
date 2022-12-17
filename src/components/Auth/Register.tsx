@@ -4,7 +4,6 @@ import LoginIcon from '@mui/icons-material/Login'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 
 import { red } from '../../utils/colors'
-import { useNavigate } from 'react-router-dom'
 
 const Signup = ({ setIsRegister, setAlert }) => {
   const [email, setEmail] = useState('')
