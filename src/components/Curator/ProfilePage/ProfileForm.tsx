@@ -20,7 +20,15 @@ import { useEffect } from 'react'
 import useAuth from '../../../hooks/useAuth'
 import { Profile } from '../../../utils/types'
 
-const ProfileForm = ({ profile }: { profile: Profile | null }) => {
+const ProfileForm = ({
+  profile,
+  saveProfile,
+  accountId,
+}: {
+  profile: Profile | null
+  saveProfile: (p: object) => void
+  accountId: string
+}) => {
   const { user } = useAuth()
 
   const [firstName, setFirstName] = useState('')
@@ -65,14 +73,41 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
     width: '60vw',
   }
 
+  const handleSave = () => {
+    const profileInput = {
+      firstName,
+      lastName,
+      phone,
+      birthDate,
+      gender,
+      address: {
+        addressLine: address.addressLine,
+        city: address.city,
+        zip: address.zip,
+        region: address.region,
+        country: address.country,
+      },
+      about,
+      accountId,
+    }
+    const profileId = profile?.id || null
+    saveProfile({ variables: { profile: profileInput, profileId } })
+  }
+
   return (
     <>
       <Box
+        component="form"
         display="flex"
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
         sx={{ my: 5 }}
+        onSubmit={(e) => {
+          e.preventDefault()
+          handleSave()
+        }}
+        autoComplete="off"
       >
         <Typography sx={sxCommon} variant="h3">
           Your personal information
@@ -100,6 +135,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <TextField
+                required
                 fullWidth
                 label="First name"
                 sx={{ mb: 2.5 }}
@@ -114,6 +150,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
             <Grid item xs={6}>
               <TextField
                 fullWidth
+                required
                 sx={{ mb: 2.5 }}
                 value={lastName}
                 onChange={(e) => {
@@ -127,7 +164,12 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
           </Grid>
           <Grid container spacing={2}>
             <Grid item xs={4}>
-              <FormControl fullWidth variant="standard" sx={{ mb: 10 }}>
+              <FormControl
+                required
+                fullWidth
+                variant="standard"
+                sx={{ mb: 10 }}
+              >
                 <InputLabel id="gender-label">Gender</InputLabel>
                 <Select
                   value={gender}
@@ -157,6 +199,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
                   }}
                   renderInput={(params) => (
                     <TextField
+                      required
                       fullWidth
                       sx={{ mb: 10 }}
                       variant="standard"
@@ -168,6 +211,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
             </Grid>
             <Grid item xs={4}>
               <TextField
+                required
                 fullWidth
                 sx={{ mb: 10 }}
                 label="Phone number"
@@ -185,6 +229,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
             Where can we find you?
           </Typography>
           <TextField
+            required
             fullWidth
             label="Address line"
             sx={{ mb: 2.5 }}
@@ -201,6 +246,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <TextField
+                required
                 fullWidth
                 label="Zip code"
                 value={address.zip}
@@ -217,6 +263,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
             </Grid>
             <Grid item xs={6}>
               <TextField
+                required
                 fullWidth
                 label="City"
                 value={address.city}
@@ -235,6 +282,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <TextField
+                required
                 fullWidth
                 label="Region"
                 value={address.region}
@@ -251,6 +299,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
             </Grid>
             <Grid item xs={6}>
               <TextField
+                required
                 fullWidth
                 label="Country"
                 value={address.country}
@@ -271,6 +320,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
             here?
           </Typography>
           <TextField
+            required
             label="About you"
             multiline
             value={about}
@@ -282,7 +332,7 @@ const ProfileForm = ({ profile }: { profile: Profile | null }) => {
             variant="filled"
           />
         </Box>
-        <Button size="large" variant="contained">
+        <Button size="large" variant="contained" type="submit">
           Save
         </Button>
       </Box>

@@ -1,13 +1,10 @@
 import { useState } from 'react'
-import { Box, Container, Alert, AlertColor } from '@mui/material'
+import { Box, Container, Alert } from '@mui/material'
 import { useLocation } from 'react-router-dom'
+
 import Authenticate from './Authenticate'
 import Register from './Register'
-
-type Alert = {
-  severity: AlertColor
-  message: string
-}
+import { SnackbarAlert } from '../../utils/types'
 
 const Auth = () => {
   const location = useLocation()
@@ -16,7 +13,7 @@ const Auth = () => {
     location.state?.isRegister || false
   )
 
-  const [alert, setAlert] = useState<Alert>()
+  const [alert, setAlert] = useState<SnackbarAlert>()
 
   return (
     <Container>
