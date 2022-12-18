@@ -43,7 +43,7 @@ describe('E2E and Integration tests', () => {
     cy.get('table tbody').find('a').contains("Mossholder");
   });
 
-  it('should visit register page, register a new user and go to Curator Corner to finish registration', () => {
+  it('should visit login page, login as Curator, go to Curator Corner to edit profile information', () => {
     cy.visit("http://localhost:3000/auth");
     cy.get('[id="email"]').type("curator@email.com");
     cy.get('[id="password"]').type("curator");
