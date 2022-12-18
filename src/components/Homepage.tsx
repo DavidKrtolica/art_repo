@@ -61,13 +61,14 @@ const Homepage = () => {
       minHeight="80vh"
       flexDirection="column"
     >
-      {homepageItems.map((link) => (
+      {homepageItems.map((link, index) => (
         <Link
           to={link.href}
           state={link.props}
           style={{ textDecoration: 'none' }}
         >
           <Typography
+            id = {`linkId${index}`}
             variant="h2"
             color={link.mainColor}
             sx={{

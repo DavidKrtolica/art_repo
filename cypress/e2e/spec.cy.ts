@@ -37,10 +37,22 @@ describe('E2E and Integration tests', () => {
     cy.url().should('include', '/artwork/7d5a967c-7178-11ed-9747-772d46b82e60');
   });
 
-  it('should visit artist hall page and verify there are 5 artists in the table', () => {
+  it('should visit artist hall page and verify there are 8 artists in the table', () => {
     cy.visit("http://localhost:3000/hall");
-    cy.get('table tbody a').should('have.length', 5);
+    cy.get('table tbody a').should('have.length', 8);
     cy.get('table tbody').find('a').contains("Mossholder");
+  });
+
+  it('should visit register page, register a new user and go to Curator Corner to finish registration', () => {
+    cy.visit("http://localhost:3000/auth");
+    cy.get('[id="email"]').type("curator@email.com");
+    cy.get('[id="password"]').type("curator");
+    cy.get('[id="login-btn"]').click();
+    cy.get('[id="linkId0"]').click();
+    cy.get('[id="edit-profile"]').click();
+    //cy.get('[id="aboutyou"]').type(" I am the last exam test!");
+    cy.get('[id="saveprofile"]').click();
+    cy.contains('Your personal information has successfully been saved');
   });
 })
 

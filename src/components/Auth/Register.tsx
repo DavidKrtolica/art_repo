@@ -97,6 +97,7 @@ const Signup = ({ setIsRegister, setAlert }) => {
               onChange={(e) => setRepeatPassword(e.target.value)}
             />
             <Button
+              id="register-submit"
               sx={{ width: '50%' }}
               variant="contained"
               type="submit"

@@ -24,7 +24,7 @@ const CuratorCorner = () => {
         justifyContent="center"
         flexDirection="column"
       >
-        <Link to={'/curator/profile'} style={{ textDecoration: 'none' }}>
+        <Link id='edit-profile' to={'/curator/profile'} style={{ textDecoration: 'none' }}>
           <Typography
             variant="h3"
             color={'text.primary'}

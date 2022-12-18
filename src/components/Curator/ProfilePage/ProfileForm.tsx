@@ -134,6 +134,7 @@ const ProfileForm = ({
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <TextField
+                id="firstname"
                 required
                 fullWidth
                 label="First name"
@@ -148,6 +149,7 @@ const ProfileForm = ({
             </Grid>
             <Grid item xs={6}>
               <TextField
+                id="lastname"
                 fullWidth
                 required
                 sx={{ mb: 2.5 }}
@@ -171,6 +173,7 @@ const ProfileForm = ({
               >
                 <InputLabel id="gender-label">Gender</InputLabel>
                 <Select
+                  id="gender"
                   value={gender}
                   label="Gender"
                   labelId="gender-label"
@@ -198,6 +201,7 @@ const ProfileForm = ({
                   }}
                   renderInput={(params) => (
                     <TextField
+                      id="birthdate"
                       required
                       fullWidth
                       sx={{ mb: 10 }}
@@ -210,6 +214,7 @@ const ProfileForm = ({
             </Grid>
             <Grid item xs={4}>
               <TextField
+                id="phonenumber"
                 required
                 fullWidth
                 sx={{ mb: 10 }}
@@ -228,6 +233,7 @@ const ProfileForm = ({
             Where can we find you?
           </Typography>
           <TextField
+            id="address"
             required
             fullWidth
             label="Address line"
@@ -245,6 +251,7 @@ const ProfileForm = ({
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <TextField
+                id="zipcode"
                 required
                 fullWidth
                 label="Zip code"
@@ -262,6 +269,7 @@ const ProfileForm = ({
             </Grid>
             <Grid item xs={6}>
               <TextField
+                id="city"
                 required
                 fullWidth
                 label="City"
@@ -281,6 +289,7 @@ const ProfileForm = ({
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <TextField
+                id="region"
                 required
                 fullWidth
                 label="Region"
@@ -298,6 +307,7 @@ const ProfileForm = ({
             </Grid>
             <Grid item xs={6}>
               <TextField
+                id="country"
                 required
                 fullWidth
                 label="Country"
@@ -319,6 +329,7 @@ const ProfileForm = ({
             here?
           </Typography>
           <TextField
+            id="aboutyou"
             required
             label="About you"
             multiline
@@ -331,7 +342,7 @@ const ProfileForm = ({
             variant="filled"
           />
         </Box>
-        <Button size="large" variant="contained" type="submit">
+        <Button id="saveprofile" size="large" variant="contained" type="submit">
           Save
         </Button>
       </Box>

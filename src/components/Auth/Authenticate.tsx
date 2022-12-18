@@ -99,6 +99,7 @@ const Authenticate = ({ setIsRegister, setAlert }) => {
         </form>
       </Paper>
       <Button
+        id="register-btn"
         sx={{ height: '75px' }}
         variant="contained"
         color="secondary"
